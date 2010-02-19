@@ -2460,7 +2460,7 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
                             0x0070,             // Range Minimum
                             0x0070,             // Range Maximum
                             0x00,               // Alignment
-                            0x04,               // Length
+                            0x02,               // Length
                             )
                         IRQNoFlags ()
                             {8}
@@ -2471,7 +2471,7 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
                             0x0070,             // Range Minimum
                             0x0070,             // Range Maximum
                             0x00,               // Alignment
-                            0x04,               // Length
+                            0x02,               // Length
                             )
                     })
                     Method (_CRS, 0, NotSerialized)
