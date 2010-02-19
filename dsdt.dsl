@@ -2165,35 +2165,9 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
 
                 Method (\_SB.PCI0._INI, 0, NotSerialized)
                 {
-                    If (STRC (\_OS, "Microsoft Windows"))
-                    {
-                        Store (0x56, SMIP)
-                    }
-                    Else
-                    {
-                        If (STRC (\_OS, "Microsoft Windows NT"))
-                        {
-                            If (CondRefOf (\_OSI, Local0))
-                            {
-                                If (\_OSI ("Windows 2001"))
-                                {
-                                    Store (0x59, SMIP)
-                                    Store (0x00, OSFL)
-                                    Store (0x03, OSFX)
-                                }
-                            }
-                            Else
-                            {
-                                Store (0x58, SMIP)
-                                Store (0x00, OSFL)
-                            }
-                        }
-                        Else
-                        {
-                            Store (0x57, SMIP)
-                            Store (0x02, OSFL)
-                        }
-                    }
+                    Store (0x59, SMIP)
+                    Store (0x00, OSFL)
+                    Store (0x03, OSFX)
                 }
 
                 Scope (\)
