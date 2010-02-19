@@ -272,12 +272,12 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
     {
         Method (_MSG, 1, NotSerialized)
         {
-            Store (Local0, Local0)
+            Store (Zero, Local0)
         }
 
         Method (_SST, 1, NotSerialized)
         {
-            Store (Local0, Local0)
+            Store (Zero, Local0)
         }
     }
 
