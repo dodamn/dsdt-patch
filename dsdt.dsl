@@ -1990,6 +1990,19 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
             Device (PX40)
             {
                 Name (_ADR, 0x001F0000)
+                Method (_DSM, 4, NotSerialized)
+                {
+                    Store (Package (0x02)
+                    {
+                        "device-id",
+                        Buffer (0x04)
+                        {
+                            0xb9, 0x27, 0x00, 0x00
+                        }
+                    }, Local0)
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
+                }
                 OperationRegion (PREV, PCI_Config, 0x08, 0x01)
                 Scope (\)
                 {
