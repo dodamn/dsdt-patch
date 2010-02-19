@@ -3517,6 +3517,26 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
                     0x0D, 
                     0x03
                 })
+
+                Method (_DSM, 4, NotSerialized)
+                {
+                    Store (Package (0x04)
+                    {
+                        "AAPL,clock-id",
+                        Buffer (One)
+                        {
+                            One
+                        },
+
+                        "device-type",
+                        Buffer (0x05)
+                        {
+                            "EHCI"
+                        }
+                    }, Local0)
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
+                }
             }
 
             Name (NATA, Package (0x01)
