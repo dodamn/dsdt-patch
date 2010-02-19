@@ -8,6 +8,109 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
         Processor (\_PR.CPU3, 0x03, 0x00000410, 0x06) {}
     }
 
+    Scope (\_PR.CPU0)
+    {
+        Method (_CST, 0, NotSerialized)
+        {
+            Return (Package (0x02)
+            {
+                0x01,
+                Package (0x04)
+                {
+                    ResourceTemplate ()
+                    {
+                        Register (FFixedHW,
+                            0x01,
+                            0x02,
+                            0x0000000000000000,
+                            ,)
+                    },
+                    0x01,
+                    0x14,
+                    0x03E8
+                }
+            })
+        }
+
+        Method (_PCT, 0, NotSerialized)
+        {
+            Return (Package (0x02)
+            {
+                ResourceTemplate ()
+                {
+                    Register (FFixedHW,
+                        0x00,
+                        0x00,
+                        0x0000000000000000,
+                        ,)
+                },
+
+                ResourceTemplate ()
+                {
+                    Register (FFixedHW,
+                        0x00,
+                        0x00,
+                        0x0000000000000000,
+                        ,)
+                }
+            })
+        }
+
+        Method (_PSS, 0, NotSerialized)
+        {
+            Return (Package (0x03)
+            {
+                Package (0x06)
+                {
+                    0x00000AF0,
+                    0x000157C0,
+                    0x0000000A,
+                    0x0000000A,
+                    0x00004A25,
+                    0x00004A25
+                },
+
+                Package (0x06)
+                {
+                    0x00000855,
+                    0x000109A0,
+                    0x0000000A,
+                    0x0000000A,
+                    0x0000081E,
+                    0x0000081E
+                },
+
+                Package (0x06)
+                {
+                    0x00000640,
+                    0x0000C738,
+                    0x0000000A,
+                    0x0000000A,
+                    0x00000616,
+                    0x00000616
+                }
+            })
+        }
+    }
+
+    Scope (\_PR.CPU1)
+    {
+        Method (_CST, 0, NotSerialized)
+        {
+            Return (^^CPU0._CST)
+        }
+ 
+        Method (_PCT, 0, NotSerialized)
+        {
+            Return (^^CPU0._PCT)
+        }
+
+        Method (_PSS, 0, NotSerialized)
+        {
+            Return (^^CPU0._PSS)
+        }
+    }
+
     Name (\_S0, Package (0x04)
     {
         0x00, 
