@@ -401,6 +401,91 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
 
         Device (PCI0)
         {
+            Device (PEGP)
+            {
+                Name (_ADR, 0x00010000)
+                Device (GFX0)
+                {
+                    Name (_ADR, Zero)
+                    Name (_SUN, One)
+                    Method (_DSM, 4, NotSerialized)
+                    {
+                        Store (Package (0x16)
+                        {
+                            "@0,compatible", 
+                            Buffer (0x0B)
+                            {
+                                "NVDA,NVMac"
+                            }, 
+
+                            "@0,device_type", 
+                            Buffer (0x08)
+                            {
+                                "display"
+                            }, 
+
+                            "@0,name", 
+                            Buffer (0x0F)
+                            {
+                                "NVDA,Display-A"
+                            }, 
+
+                            "@1,compatible", 
+                            Buffer (0x0B)
+                            {
+                                "NVDA,NVMac"
+                            }, 
+
+                            "@1,device_type", 
+                            Buffer (0x08)
+                            {
+                                "display"
+                            }, 
+
+                            "@1,name", 
+                            Buffer (0x0F)
+                            {
+                                "NVDA,Display-B"
+                            }, 
+
+                            "NVCAP", 
+                            Buffer (0x18)
+                            {
+                                /* 0000 */    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 
+                                /* 0008 */    0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 
+                                /* 0010 */    0x00, 0x00, 0x00, 0x00
+                            }, 
+
+                            "VRAM,totalsize", 
+                            Buffer (0x04)
+                            {
+                                0x00, 0x00, 0x00, 0x10
+                            }, 
+
+                            "device_type", 
+                            Buffer (0x0D)
+                            {
+                                "NVDA,GeForce"
+                            }, 
+
+                            "model", 
+                            Buffer (0x17)
+                            {
+                                "nVidia GeForce 8500 GT"
+                            }, 
+
+                            "rom-revision", 
+                            Buffer (0x25)
+                            {
+                                "nVidia GeForce 8500 GT OpenGL Engine"
+                            }
+                        }, Local0)
+                        DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                        Return (Local0)
+                    }
+                }
+            }
+
             Name (_HID, EisaId ("PNP0A03"))
             Name (_ADR, 0x00)
             Name (_UID, 0x01)
