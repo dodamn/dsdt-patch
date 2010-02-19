@@ -4355,6 +4355,22 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
                     And (BAS0, 0xFFFE, Local0)
                     Return (Local0)
                 }
+
+                Method (_DSM, 4, NotSerialized)
+                {
+                    Store (Package (0x04)
+                    {
+                        "name",
+                        "pci8086,3a30",
+                        "device-id",
+                        Buffer (0x04)
+                        {
+                            0x30, 0x3a, 0x00, 0x00
+                        }
+                    }, Local0)
+                    DTGP (Arg0, Arg1, Arg2, Arg3, RefOf (Local0))
+                    Return (Local0)
+                }
             }
 
             Device (AZAL)
