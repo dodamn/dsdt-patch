@@ -1014,7 +1014,7 @@ DefinitionBlock ("dsdt.aml", "DSDT", 1, "GBT   ", "GBTUACPI", 0x00001000)
                             Store (0x00, PARM)
                             If (ISSC)
                             {
-                                Or (0x03, PARM)
+                                Or (PARM, 0x03, PARM)
                             }
 
                             Store (0x00, GESF)
